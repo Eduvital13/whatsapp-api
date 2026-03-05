@@ -37,7 +37,7 @@ app.get('/', (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, async () => {
+app.listen(PORT, '0.0.0.0', async () => {
   console.log(`\n🚀 Servidor rodando em http://localhost:${PORT}`);
   console.log(`📱 Acesse http://localhost:${PORT}/api/qrcode para conectar\n`);
   await startWhatsApp();
