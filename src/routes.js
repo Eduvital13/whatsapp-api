@@ -66,4 +66,10 @@ router.get('/webhook', (req, res) => {
   res.json({ webhook: getWebhook() || 'Nenhum webhook configurado' });
 });
 
+router.post('/flush', async (req, res) => {
+  const { flushSession } = require('./whatsapp');
+  const ok = await flushSession();
+  res.json({ success: ok });
+});
+
 module.exports = router;

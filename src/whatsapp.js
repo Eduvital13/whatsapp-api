@@ -160,6 +160,13 @@ async function dispararWebhook(payload) {
 function getStatus()     { return connectionStatus; }
 function getQRCode()     { return qrCodeData; }
 function setWebhook(url) { webhookUrl = url; }
-function getWebhook()    { return webhookUrl; }
+function getWebhook()    { return webhookUrl; } 
 
-module.exports = { startWhatsApp, sendTextMessage, getStatus, getQRCode, setWebhook, getWebhook };
+async function flushSession() {
+  const redis = await getRedis();
+  if (!redis) return false;
+  await redis.flushAll();
+  return true;
+}
+
+module.exports = { startWhatsApp, sendTextMessage, getStatus, getQRCode, setWebhook, getWebhook, flushSession };
